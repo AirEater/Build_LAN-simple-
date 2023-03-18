@@ -21,20 +21,22 @@ after enter privilege mode, enter to config mode then type"no ip domain-lookup" 
 
 Let's go to PC0, we open the Terminal then we can see the router CLI(a interface that we can configure the router).(not sure real situation is same or not)
 type "en" or "enable" to enter privilege mode after enter privilege mode we will see '#' behind our hostname, then type "conf t" to enter config mode.
-type "interface fa0/0" for go to port Fa0/0(connected with switch0) interface in order to setup gate way ip address. //Each connection to the router has a gate way ip address
+type "interface fa0/0" for go to port Fa0/0(connected with switch0) interface in order to setup gate way ip address. //Each connection to the router is a network
 type "ip address <gate way ip address> <subnet mask>" to setup the gate way and subnet mask ip address. //subnet mask ip is "255.255.255.0"
 after that we have to type "no shut" or "no shutdown" to activate(apply the changes).
 type "exit" to return to previous mode.
+
 as the same step, we go to the fa0/1 port interface to setup the server gate way and subnet mask ip address. ALWAYS REMEMBER to type "no shut" to apply the changes.
 all the configuration we did just now is not saved, it means that if we turn off and on the router, the configuratoin we did is gone so that
 ALWAY REMEMBER that we havet to type "copy run start" to save our configuration so that after we turn off and on the router, the configuratoin will be saved.
 go to the server --> Desktop then set the server ip address, subnet mask and gate way.
 
+--IP configuration--
 We can setup static ip for out PC1, PC2, PC3 by going to the PC's command prompt type "ipconfig <ip address> <subnet mask>"
 or
 We can setup DHCP service in Router, by doing this PCs will obtain their dunamic IP from router.
-go to the config mode then type"ip dhcp pool ANYNAME", then "network 192.168.15.0 255.255.255.0", then "default-router <gate way ip address for LAN(which connected to switch)>"
-then type "dns-server 192.168.10.1"
+go to the config mode then type"ip dhcp pool ANYNAME", then "network <network address> <subnet mask>", then "default-router <gate way ip address for LAN(which connected to switch)>"
+then type "dns-server <ip address that we set for the dhcp>"
 go to command prompt of all PC type"ipconfig /renew" to obtain the dynamic IP address from router.
 REMEMBER to save the configuration with "copy run start".
 
